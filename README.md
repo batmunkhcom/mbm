@@ -1,4 +1,4 @@
-mbm
+miniCMS v3 Library
 ===
 
-mbm
+For miniCMS v3 Content Mangement System
