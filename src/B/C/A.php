@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
@@ -7,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace B;
+namespace B\C;
 /**
  * Description here
  *
@@ -16,15 +17,14 @@ namespace B;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Testing {
+class A {
 
-    public function Testing() {
-        echo 'Testing loaded....';
+    public function A() {
+        
     }
     
     public function a(){
         
-        return 'Testing->a();<br />';
+        return 'B-C->a();<br />';
     }
-
 }
