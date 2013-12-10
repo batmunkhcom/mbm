@@ -1,4 +1,11 @@
 <?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
@@ -7,7 +14,6 @@
  * file that was distributed with this source code.
  */
 
-namespace B;
 /**
  * Description here
  *
@@ -16,15 +22,10 @@ namespace B;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Testing {
+class Core {
 
-    public function Testing() {
-        echo 'Testing loaded....';
-    }
-    
-    public function a(){
+    public function Core() {
         
-        return 'Testing->a();<br />';
     }
 
 }
