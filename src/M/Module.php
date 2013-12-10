@@ -19,7 +19,7 @@ namespace M;
  */
 class Module {
 
-    public function Module() {
+    public function __construct() {
         
     }
 

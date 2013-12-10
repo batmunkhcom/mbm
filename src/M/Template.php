@@ -20,7 +20,7 @@ namespace M;
  */
 class Template {
 
-    public function Template() {
+    public function __construct() {
         
     }
 
