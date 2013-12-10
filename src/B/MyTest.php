@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+namespace B;
 /**
  * Description here
  *
@@ -16,10 +17,10 @@
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Core {
+class MyTest {
 
-    public function Core() {
-        
+    public function MyTest() {
+        echo 'MyTest loaded....';
     }
 
 }

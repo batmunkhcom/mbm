@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
@@ -7,6 +8,7 @@
  * file that was distributed with this source code.
  */
 
+namespace B;
 /**
  * Description here
  *
@@ -15,10 +17,10 @@
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Testing {
+class Core {
 
-    public function Testing() {
-        echo 'Testing loaded....';
+    public function Core() {
+        
     }
 
 }
