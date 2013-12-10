@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+namespace M;
+
 /**
  * Description here
  *
@@ -15,9 +17,11 @@
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Template {
+class App {
 
-    public function Template() {
+    public $app;
+    
+    public function App() {
         
     }
 
