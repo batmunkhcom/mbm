@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
@@ -19,10 +20,21 @@ namespace M;
  */
 class App {
 
-    public $app;
-    
-    public function App() {
+    public $app = 'dd';
+
+    public function __construct() {
         
+    }
+
+    /**
+     * bgaa buh app iig avna
+     */
+    static function getAllApps() {
+
+        $enabled_apps = array();
+        $dirs = Dir::getAllDirectories(DIR_APP);
+
+        Config::set('apps', $dirs);
     }
 
 }

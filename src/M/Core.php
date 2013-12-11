@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace M;
 
 /**
@@ -21,8 +20,32 @@ namespace M;
  */
 class Core {
 
-    public function Core() {
+    public $router;
+
+    public function __construct() {
         
+        Module::setAppDir();
+        $this->router = $this->loadRouter();
     }
 
+    public function loadRouter() {
+
+        //module iin router iig avah
+        
+        
+        
+        $router = new Router();
+
+        require_once DIR_CORE.'app/'.ENABLED_APP.'/config/routing.php';
+        
+        // Run it!
+        $router->run();
+        
+        return $router;
+    }
+
+    public function loadConfig(){
+        
+        $config = new Config();
+    }
 }

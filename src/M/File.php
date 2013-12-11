@@ -1,5 +1,7 @@
 <?php
 
+namespace M;
+
 class File {
 
     public function File() {
@@ -81,7 +83,9 @@ class File {
     public static function getAndIncludePHPFiles($dir) {
 
         $files = self::getFiles($dir, 'php');
-        self::includePHPFiles($files);
+        if (is_array($files)) {
+            self::includePHPFiles($files);
+        }
     }
 
 }

@@ -9,7 +9,6 @@ namespace M;
 
 class Router {
 
-
 	/**
 	 * @var array The route patterns and their handling functions
 	 */

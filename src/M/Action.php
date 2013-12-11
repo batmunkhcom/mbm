@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
@@ -18,11 +17,10 @@ namespace M;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class DB {
+class Action {
 
-    public function __construct() {
+    public function Action() {
         
     }
 
-    
 }
