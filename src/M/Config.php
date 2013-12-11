@@ -28,7 +28,7 @@ class Config {
     public static $data = array();
 
     public function __construct($data = array()) {
-        $this->data = $data;
+        Config::$data = $data;
     }
 
     static function get($key = '',$value=null) {
