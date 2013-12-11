@@ -20,11 +20,10 @@ namespace M;
  */
 class Template {
 
-    // We setup $page_vars to hold all our pages
-    // variables.
+    // template file ruu damjuulah huvisagchuudiig $page_vars -d hadgalna
     private $page_vars = array();
-    // We setup $template_file to define what file is our
-    // template and were to get it.
+    
+    // ali template file iig duudahiig $template_file -d zaaj ugnu 
     private $template_file;
 
     // When a new Template object is instantiated we want to make sure
@@ -35,11 +34,11 @@ class Template {
     public function __construct($template_file) {
 
         // We setup our action directory
-        $actionsDirectory = PEANUT_ROOT_DIR . 'actions';
+        $load_action_dir = Module::$current_app_dir . 'modules';
 
         // Let's build and set our class var $template_file to the
         // value of $template_file that was passed into our __construct method
-        $this->template = $actionsDirectory . '/' . $template_file;
+        $this->template = $load_action_dir . '/' . $template_file;
     }
 
     // Now we create out set method to allow use to set variables that
@@ -55,7 +54,7 @@ class Template {
         // (we setup earlier at the top of the class)
         // to the value that we pass. so $page_vars["yourVar"] = "yourValue"
         // is basically what it's doing.
-        $this->pageVars[$var] = $val;
+        $this->page_vars[$var] = $val;
     }
 
     // To render we will need to do a couple of things.
@@ -70,20 +69,20 @@ class Template {
         // when you call it on an associative array
         // it creates regular vars.
         // For instance:
-        //      $this->pageVars["yourVar"]
+        //      $this->page_vars["yourVar"]
         // becomes:
         //      $yourVar
         // so basically we are converting all the
-        // index keys (with their values), in pageVars to
+        // index keys (with their values), in page_vars to
         // their own respected variables
-        extract($this->pageVars);
+        extract($this->page_vars);
 
         // Now that we have all the variables extracted, the vars we set
         // in the template will be replaced by the value of the pageVars variables.
         // Now we start up our output buffer, grab our template and return the
         // buffer with it's "rendered" template
         ob_start();
-        require($this->template);
+        require($this->page_vars);
         return ob_get_clean();
     }
 

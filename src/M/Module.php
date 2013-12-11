@@ -20,23 +20,16 @@ namespace M;
  * 
  * 
  * @property array $modules buh module uud
- * @property array $enabled_modules zuvhun idevhjsen module uud
+ * @property array $module_enabled zuvhun idevhjsen module uud
  */
 class Module {
 
-    public static $app_dir = '';
-    public static $all_modules = array();
-    public static $enabled_modules = array();
+    public static $current_app_dir = '';
+    public static $module_all = array();
+    public static $module_enabled = array();
 
     public function __construct() {
-        $this->setAppDir();
-    }
-
-    public static function getAllModuleRouters() {
-        $modules = self::$enabled_modules;
-        if (file_exists()) {
-            
-        }
+//        self::setAppDir();
     }
 
     /**
@@ -44,12 +37,13 @@ class Module {
      */
     static function getAllModules() {
 
-        self::setAppDir();
+        $module_current_dir = self::$current_app_dir . 'modules' . DS;
+        $module_all = Dir::getAllDirectories($module_current_dir);
 
-        $all_modules = Dir::getAllDirectories(self::getAppDir() . 'modules' . DS);
+        Config::set('modules', $module_all);
+        Config::set('module_current_dir', $module_current_dir);
 
-        Config::set('modules', $all_modules);
-        return $all_modules;
+        return $module_all;
     }
 
     /**
@@ -57,34 +51,52 @@ class Module {
      */
     static function getAllEnabledModules() {
 
-        $all_modules = self::getAllModules();
+        $module_all = self::getAllModules();
         $_enabled_modules = array();
 
-        
-        if (is_array($all_modules)) {
-            foreach ($all_modules as $k => $v) {
-                if (file_exists(self::$app_dir . 'modules' . DS . $v . DS . 'config.php')) {
-                    require_once self::$app_dir . 'modules' . DS . $v . DS . 'config.php';
-                    if($enabled_modules[$v] == 1){
+
+        if (is_array($module_all)) {
+            foreach ($module_all as $k => $v) {
+                if (file_exists(self::$current_app_dir . 'modules' . DS . $v . DS . 'config.php')) {
+                    require_once self::$current_app_dir . 'modules' . DS . $v . DS . 'config.php';
+                    if ($is_enabled_module[$v] == 1) {
                         $_enabled_modules[$v] = $v;
                     }
                 }
             }
         }
-        Config::set('enabled_modules', $_enabled_modules);
+
+        self::setModuleEnabled($_enabled_modules);
+        
         return $_enabled_modules;
+    }
+
+    public static function getAllModuleRouters(Router $router) {
+
+        $modules = self::getAllEnabledModules();
+
+        foreach ($modules as $k => $v) {
+            if (file_exists(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php')) {
+                require_once(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php');
+            }
+        }
+    }
+
+    public static function setModuleEnabled($_enabled_modules = array()) {
+
+        Config::set('module_enabled', $_enabled_modules);
+        self::$module_enabled = $_enabled_modules;
+        $GLOBALS['is_enabled_module'] = $_enabled_modules;
     }
 
     public static function getAppDir() {
 
-        self::setAppDir();
-
-        return self::$app_dir;
+        return self::$current_app_dir;
     }
 
     public static function setAppDir() {
 
-        self::$app_dir = DIR_APP . ENABLED_APP . DS;
+        self::$current_app_dir = DIR_APP . ENABLED_APP . DS;
     }
 
 }

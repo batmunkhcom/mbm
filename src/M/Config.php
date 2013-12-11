@@ -21,7 +21,10 @@ namespace M;
  * @property array $data Config iin set,get utguudiig aguulna
  * @property array $data[apps] buh application uud
  * @property array $data[modules] buh module uud
- * @property array $data[enabled_modules] zuvhun idevhjsen module uud
+ * @property array $data[module_enabled] zuvhun idevhjsen module uud
+ * @property array $data[module_current] yag odoogiin module
+ * @property array $data[module_current_dir] yag odoogiin module dir
+ * @property array $data[action_current] yag odoogiin action
  */
 class Config {
 
