@@ -27,9 +27,10 @@ class Module {
     public static $current_app_dir = '';
     public static $module_all = array();
     public static $module_enabled = array();
+    public static $module_current_dir = '';
 
     public function __construct() {
-//        self::setAppDir();
+        self::setAppDir();
     }
 
     /**
@@ -37,10 +38,14 @@ class Module {
      */
     static function getAllModules() {
 
+        self::setAppDir();
         $module_current_dir = self::$current_app_dir . 'modules' . DS;
         $module_all = Dir::getAllDirectories($module_current_dir);
-
-        Config::set('modules', $module_all);
+        
+        self::$module_current_dir = $module_current_dir;
+        self::$module_all = $module_all;
+        
+        Config::set('module_all', $module_all);
         Config::set('module_current_dir', $module_current_dir);
 
         return $module_all;
@@ -49,11 +54,10 @@ class Module {
     /**
      * buh idevhtei module iig avna
      */
-    static function getAllEnabledModules() {
+    public static function getAllEnabledModules() {
 
         $module_all = self::getAllModules();
         $_enabled_modules = array();
-
 
         if (is_array($module_all)) {
             foreach ($module_all as $k => $v) {
@@ -71,10 +75,10 @@ class Module {
         return $_enabled_modules;
     }
 
-    public static function getAllModuleRouters(Router $router) {
+    public static function getAllModuleRouters(\Klein\Klein $router) {
 
         $modules = self::getAllEnabledModules();
-
+        
         foreach ($modules as $k => $v) {
             if (file_exists(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php')) {
                 require_once(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php');
@@ -96,7 +100,8 @@ class Module {
 
     public static function setAppDir() {
 
-        self::$current_app_dir = DIR_APP . ENABLED_APP . DS;
+        self::$current_app_dir = DIR_APP . APP_ENABLED . DS;
+        
     }
 
 }

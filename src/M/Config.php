@@ -20,7 +20,8 @@ namespace M;
  * 
  * @property array $data Config iin set,get utguudiig aguulna
  * @property array $data[apps] buh application uud
- * @property array $data[modules] buh module uud
+ * @property array $data[app_enabled] Tuhain idevhtei app
+ * @property array $data[module_all] buh module uud
  * @property array $data[module_enabled] zuvhun idevhjsen module uud
  * @property array $data[module_current] yag odoogiin module
  * @property array $data[module_current_dir] yag odoogiin module dir
@@ -30,8 +31,14 @@ class Config {
 
     public static $data = array();
 
-    public function __construct($data = array()) {
-        Config::$data = $data;
+    public function __construct($config = array()) {
+        
+        //undsen tohirgoonii utguud
+        Config::$data = $config;
+        
+        //buh app uudiin jagsaalt
+        App::getAllApps();
+        
     }
 
     static function get($key = '',$value=null) {

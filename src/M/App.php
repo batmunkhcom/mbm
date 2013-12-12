@@ -31,10 +31,10 @@ class App {
      */
     static function getAllApps() {
 
-        $enabled_apps = array();
         $dirs = Dir::getAllDirectories(DIR_APP);
-
-        Config::set('apps', $dirs);
+        Config::set('apps',$dirs);
+        
+        return $dirs;
     }
 
 }

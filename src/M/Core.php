@@ -20,35 +20,7 @@ namespace M;
  */
 class Core {
 
-    public $router;
-
     public function __construct() {
 
-        Module::setAppDir();
-        $this->router = $this->loadRouter();
-        Config::set('router', $this->router);
-        
     }
-
-    public function loadRouter() {
-
-        //module iin router iig avah
-
-        $router = new Router();
-
-        require_once DIR_CORE . 'app/' . ENABLED_APP . '/config/routing.php';
-
-        Module::getAllModuleRouters($router);
-        
-        // Run it!
-        $router->run();
-
-        return $router;
-    }
-
-    public function loadConfig() {
-
-        $config = new Config();
-    }
-
 }
