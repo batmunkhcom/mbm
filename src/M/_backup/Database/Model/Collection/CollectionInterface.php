@@ -7,8 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace M\Database\Model\Collection;
+use M\Database\Model;
 
-namespace M;
 
 /**
  * Description here
@@ -18,11 +19,20 @@ namespace M;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class DB {
+interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
+{
+    public function toArray();
 
-    public function __construct() {
-        
-    }
+    public function clear();
 
+    public function reset();
+
+    public function add($key, ModelAbstractEntity $entity);
     
+    public function get($key);
+
+    public function remove($key);
+
+    public function exists($key);
 }
+

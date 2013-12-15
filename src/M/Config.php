@@ -35,6 +35,9 @@ class Config {
         
         //undsen tohirgoonii utguud
         Config::$data = $config;
+        foreach($config as $k=>$v){
+            define(strtoupper($k),$v);
+        }
         
         //buh app uudiin jagsaalt
         App::getAllApps();

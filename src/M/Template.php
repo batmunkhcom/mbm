@@ -11,7 +11,7 @@
 namespace M;
 
 /**
- * Description here
+ * http://fuelyourcoding.com/roll-your-own-php-framework-part-ii/
  *
  * @package    miniCMS
  * @subpackage -

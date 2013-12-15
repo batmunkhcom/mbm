@@ -18,8 +18,10 @@
     },
     "autoload": {
         "psr-0": {
+            "D": "src/",
             "M": "src/",
-            "I": "src/"
+            "Test": "src/",
+            "MyApp": "src/"
         }
     }
 }
