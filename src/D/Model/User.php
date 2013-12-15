@@ -2,43 +2,66 @@
 
 namespace D\Model;
 
-class User extends \D\AbstractEntity {
+class User extends AbstractEntity {
 
-    protected $_allowedFields = array('id', 'name', 'email', 'role');
+    const ADMINISTRATOR_ROLE = "Administrator";
+    const GUEST_ROLE = "Guest";
+    const MANAGER_ROLE = "Manager";
 
-    public function __construct() {
-        parent::__construct($this->_allowedFields);
-    }
+    protected $allowedFields = array("id", "name", "email", "role");
 
-    /**
-     * Set the comment ID
-     */
     public function setId($id) {
+        $id = (int) $id;
 
-        if (!filter_var($id, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 999999)))) {
-            throw new \InvalidArgumentException('The user ID is invalid.');
+        if (isset($this->fields["id"])) {
+            throw new \BadMethodCallException(
+            "The ID for this user has been set already.");
         }
-        $this->_values['id'] = $id;
-    }
 
-    public function setEmail($email) {
-        if (!is_string($email) || strlen($email) < 2) {
-            throw new \InvalidArgumentException('The email is invalid.');
+        if (!is_int($id) || $id < 1) {
+            throw new \InvalidArgumentException(
+            "The user ID is invalid.");
         }
-        $this->_values['email'] = $email;
+        $this->fields["id"] = $id;
+        return $this;
     }
 
     public function setName($name) {
-        if (!is_string($name) || strlen($name) < 2) {
-            throw new \InvalidArgumentException('The name is invalid.');
+        if (strlen($name) < 2 || strlen($name) > 30) {
+            throw new \InvalidArgumentException(
+            "The user name is invalid.");
         }
-        $this->_values['name'] = $name;
+        $this->fields["name"] = htmlspecialchars(trim($name), ENT_QUOTES);
+        return $this;
     }
 
-    public function setRole($code) {
-        if (!is_string($code) || strlen($code) < 2) {
-            throw new \InvalidArgumentException('The role is invalid.');
+    public function setEmail($email) {
+        
+        if (strlen($email)<10 && substr_count('.', $email)>2 && substr_count('@', $email)!=1) {
+            throw new \InvalidArgumentException(
+            "The user email is invalid.");
         }
-        $this->_values['role'] = $code;
+//        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+//            throw new \InvalidArgumentException(
+//            "The user email is invalid.");
+//        }
+        $this->fields["email"] = $email;
+        return $this;
     }
+
+    public function setRole($role) {
+
+        if (!$role) {
+            $role = self::GUEST_ROLE;
+        }
+
+//        if ($role != self::ADMINISTRATOR_ROLE ||
+//            $role != self::GUEST_ROLE) {
+//            throw new \InvalidArgumentException(
+//                "The user role is invalid.");
+//        }
+        $this->fields["role"] = $role;
+        return $this;
+    }
+
 }
