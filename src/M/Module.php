@@ -75,7 +75,7 @@ class Module {
         return $_enabled_modules;
     }
 
-    public static function getAllModuleRouters(\Klein\Klein $router) {
+    public static function getAllModuleRouters($router) {
 
         $modules = self::getAllEnabledModules();
         

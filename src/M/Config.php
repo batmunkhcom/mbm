@@ -26,8 +26,10 @@ namespace M;
  * @property array $data[module_current] yag odoogiin module
  * @property array $data[module_current_dir] yag odoogiin module dir
  * @property array $data[action_current] yag odoogiin action
+ * @property array $data[tpl_file] yag odoogiin duudah tpl file. ene template iig duudaj haruulna
  */
-class Config {
+
+class Config extends Core{
 
     public static $data = array();
 
@@ -38,15 +40,11 @@ class Config {
         foreach($config as $k=>$v){
             define(strtoupper($k),$v);
         }
-        
-        //buh app uudiin jagsaalt
-        App::getAllApps();
-        
     }
 
     static function get($key = '',$value=null) {
         
-        if(!is_null($value)){
+        if(!is_null($value) || $value!=''){
            self::set($key, $value);
         }
         

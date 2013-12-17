@@ -8,8 +8,6 @@
  * file that was distributed with this source code.
  */
 
-namespace M;
-
 /**
  * Description here
  *
@@ -18,23 +16,10 @@ namespace M;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Router extends \Ham {
+class Test {
 
-    public $router;
-
-    public function __construct() {
-
-        $this->router = load_router('klein');
-        Config::set('router', $this->router);
+    public function Test() {
+        
     }
-
-//    public function find_route() {
-//
-//        $this->routes;
-//    }
-//    public function links() {
-//
-//        return $this->_get_compiled_routes();
-//    }
 
 }

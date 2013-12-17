@@ -33,12 +33,10 @@ class Template {
 
     public function __construct($template_file) {
 
-        // We setup our action directory
-        $load_action_dir = Module::$current_app_dir . 'modules';
 
         // Let's build and set our class var $template_file to the
         // value of $template_file that was passed into our __construct method
-        $this->template = $load_action_dir . '/' . $template_file;
+        $this->template_file = $template_file;
     }
 
     // Now we create out set method to allow use to set variables that
@@ -82,7 +80,7 @@ class Template {
         // Now we start up our output buffer, grab our template and return the
         // buffer with it's "rendered" template
         ob_start();
-        require($this->page_vars);
+        require($this->template_file);
         return ob_get_clean();
     }
 

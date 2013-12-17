@@ -2,6 +2,9 @@
 namespace D\Mapper;
 //use ModelUser;
  
+/**
+ * User Model iin Mapper n . 
+ */
 class UserMapper extends AbstractDataMapper
 {
     protected $entityTable = "users";

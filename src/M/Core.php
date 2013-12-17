@@ -20,7 +20,21 @@ namespace M;
  */
 class Core {
 
-    public function __construct() {
+    
+    public function __construct($config) {
 
+        //buh app uudiin jagsaalt
+        App::getAllApps();
+//        $config = new Config($config);
+        foreach($config as $k=>$v){
+            define(strtoupper($k),$v);
+        }
+        
+        return $config;
     }
+    
+    static function getSession(){
+        
+    }
+
 }
