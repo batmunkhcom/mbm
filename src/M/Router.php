@@ -18,7 +18,7 @@ namespace M;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id 
  */
-class Router extends \Ham {
+class Router extends \Klein\Klein {
 
     public $router;
 

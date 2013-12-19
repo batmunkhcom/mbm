@@ -30,6 +30,8 @@ class Core {
             define(strtoupper($k),$v);
         }
         
+        Config::set('layout',DEFAULT_LAYOUT);
+        
         return $config;
     }
     
