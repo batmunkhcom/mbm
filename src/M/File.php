@@ -5,7 +5,7 @@ namespace M;
 class File {
 
     public function File() {
-        
+
     }
 
     /**
@@ -17,13 +17,16 @@ class File {
     public static function getFiles($dir, $ext) {
 
         $files = array();
-        $d = dir($dir);
-        while (false !== ($entry = $d->read())) {
-            if (self::getFileExtenstion($entry) == $ext) {
-                $files [] = $dir . $entry;
+        if (is_dir($dir)) {
+            $d = dir($dir);
+            while (false !== ($entry = $d->read())) {
+                if (self::getFileExtenstion($entry) == $ext) {
+                    $files [] = $dir . $entry;
+                }
             }
+            $d->close();
         }
-        $d->close();
+
         return $files;
     }
 
@@ -43,8 +46,8 @@ class File {
     }
 
     /*
-     * @param $include_files : yamar turliin file iig include hiih tuhai. 
-     * 
+     * @param $include_files : yamar turliin file iig include hiih tuhai.
+     *
      * Example : jishee n $include_files['php'] = array('/home/username/file.php')
      */
 
@@ -75,7 +78,7 @@ class File {
 
     /**
      * ugugdsun havtasnii zaagdsan file uudiig include hiine
-     * 
+     *
      * @param $dir : scan hiih havtasnii absolute zam
      * @param $ext : shuult hiih file iin urgutgul
      * @return null
@@ -86,6 +89,17 @@ class File {
         if (is_array($files)) {
             self::includePHPFiles($files);
         }
+    }
+
+    /*
+     * Folder hooson esehiig shalgana
+     *      */
+
+    public static function isEmptyDir($dir) {
+        if (($files = @scandir($dir)) && count($files) <= 2) {
+            return true;
+        }
+        return false;
     }
 
 }

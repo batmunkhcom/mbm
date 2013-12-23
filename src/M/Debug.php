@@ -3,45 +3,44 @@
 /*
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
- *
+ * 
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 namespace M;
-
 /**
  * Description here
  *
  * @package    miniCMS
  * @subpackage Log
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
- * @version    SVN: $Id
+ * @version    SVN: $Id 
  */
-class Log {
+class Debug {
 
     static $log = '';
     static $filename;
 
-    public function Log($txt = '') {
+    public function Debug($txt = '') {
         self::$log .= $txt;
     }
 
     /**
      * type iig shineer oruul!!!!!!!!
      * @param $txt : Log text
-     * @param $type :
-     *                  0 - error medeelel bish,
+     * @param $type : 
+     *                  0 - error medeelel bish, 
      *                  1 - error medeelel
      *                  2 - trace hiihgui
      */
     public static function save($txt = '<hr />', $type = 0) {
 
         $bt = debug_backtrace();
-
+        
         $bt_text = ' in file ' . shrink_text($bt[0]['file']) . ' at row ' . $bt[0]['line'];
-
-        $content = "[" . date('Y-m-d H:i:s') . " " . number_format((float) microtime(), 4) . "] " . $txt;
+        
+        $content = "[" . date('Y-m-d H:i:s') . " ". number_format((float)microtime(),4)."] " . $txt;
 
         switch ($type) {
             case 1:
@@ -55,8 +54,8 @@ class Log {
                 break;
         }
 
-        $content .= " [" . getenv("REMOTE_ADDR") . "]";
-
+        $content .= " [".  getenv("REMOTE_ADDR")."]";
+        
         self::$log .= $content . "<br />";
         self::updateFile($content);
 
@@ -69,7 +68,7 @@ class Log {
 
     public static function updateFile($txt) {
 
-        if (ENABLE_DEBUG == 1) {
+        if (ENABLE_LOG == 1) {
             if (!file_exists(DIR_LOG . date('Y-m') . 'log')) {
                 self::$filename = DIR_LOG . APPMODE . '_' . date('Y-m') . '.log';
             }

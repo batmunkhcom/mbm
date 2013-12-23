@@ -3,7 +3,7 @@
 /**
  * This file is part of the miniCMS package.
  * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -16,9 +16,9 @@ namespace M;
  * @package    miniCMS
  * @subpackage -
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
- * @version    SVN: $Id 
- * 
- * 
+ * @version    SVN: $Id
+ *
+ *
  * @property array $modules buh module uud
  * @property array $module_enabled zuvhun idevhjsen module uud
  */
@@ -41,10 +41,10 @@ class Module {
         self::setAppDir();
         $module_current_dir = self::$current_app_dir . 'modules' . DS;
         $module_all = Dir::getAllDirectories($module_current_dir);
-        
+
         self::$module_current_dir = $module_current_dir;
         self::$module_all = $module_all;
-        
+
         Config::set('module_all', $module_all);
         Config::set('module_current_dir', $module_current_dir);
 
@@ -62,7 +62,7 @@ class Module {
         if (is_array($module_all)) {
             foreach ($module_all as $k => $v) {
                 if (file_exists(self::$current_app_dir . 'modules' . DS . $v . DS . 'config.php')) {
-                    require_once self::$current_app_dir . 'modules' . DS . $v . DS . 'config.php';
+                    include_once self::$current_app_dir . 'modules' . DS . $v . DS . 'config.php';
                     if ($is_enabled_module[$v] == 1) {
                         $_enabled_modules[$v] = $v;
                     }
@@ -71,17 +71,17 @@ class Module {
         }
 
         self::setModuleEnabled($_enabled_modules);
-        
+
         return $_enabled_modules;
     }
 
     public static function getAllModuleRouters($router) {
 
         $modules = self::getAllEnabledModules();
-        
+
         foreach ($modules as $k => $v) {
             if (file_exists(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php')) {
-                require_once(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php');
+                include_once(self::$current_app_dir . "modules" . DS . $v . DS . 'routing.php');
             }
         }
     }
@@ -101,7 +101,20 @@ class Module {
     public static function setAppDir() {
 
         self::$current_app_dir = DIR_APP . APP_ENABLED . DS;
-        
+    }
+
+    /*
+     * Module iin JS,CSS file uudiig avah.
+     * @param $module_name string Module iin ner
+     * @param $file_type string File iin urgutgul. Ex: js,css
+     * @return array
+     *      */
+
+    public static function getMediaFiles($module_name = '', $file_type = '') {
+
+        $files = \M\File::getFiles(DIR_MODULE . $module_name . DS . $file_type . DS, $file_type);
+
+        return $files;
     }
 
 }
