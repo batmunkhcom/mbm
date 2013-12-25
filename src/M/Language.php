@@ -25,12 +25,10 @@ class Language {
     public $langFiles = array();
 
     public function __construct($ln = 'mn') {
-        if (DIR_CORE . 'lang' . DS . $ln . DS . 'index.lang.php') {
+        if (DIR_CORE . 'lang' . DS . $ln . DS . 'index.php') {
             $this->langFilesDir = DIR_CORE . 'lang' . DS . $ln . DS;
-            log_send('Language file not found. (' . $ln . ').', 3);
         } else {
             $this->langFilesDir = DIR_CORE . 'lang' . DS . strtolower(DEFAULT_LANG) . DS;
-            log_send('Language file not found. (' . $ln . ').', 3);
         }
         $this->langFiles = File::getFiles($this->langFilesDir, 'php');
 
