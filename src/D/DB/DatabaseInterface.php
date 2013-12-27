@@ -26,5 +26,5 @@ interface DatabaseInterface {
 
     public function fetchAllTables();
 
-    public function fetchAllFields();
+    public function fetchAllFields($table);
 }
