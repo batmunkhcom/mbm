@@ -1,448 +1,704 @@
 <?php
 
-namespace D\Model;
+/**
+ * This file is part of the miniCMS package.
+ * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace \D\Model;
 
 /**
- * User model. Users table.
- */
+                            * User model. users table.
+                            */
 class User extends AbstractEntity {
+/**
+* users table iin baganuud n UserMapper deer davhar zaaj ugnu
+*/
+protected $allowedFields = array(
+'id',
+'user_id',
+'depth',
+'lft',
+'rgt',
+'code',
+'st',
+'role',
+'email',
+'username',
+'password',
+'password_tmp',
+'firstname',
+'lastname',
+'phone',
+'gender',
+'birthday',
+'city_birth',
+'city_living',
+'address_living',
+'address_billing',
+'address_shipping',
+'website',
+'profile_hits',
+'token',
+'secret_key',
+'default_timezone',
+'default_lang',
+'default_layout',
+'date_created',
+'date_password_reset');
 
-    /**
-     * hereglegchiin erh
-     */
-    const ADMINISTRATOR_ROLE = "Administrator";
-    const GUEST_ROLE = "Guest";
-    const MANAGER_ROLE = "Manager";
-
-    /**
-     * Table iin columns. UserMapper deer duudahdaa davhar zaaj ugnu.
-     */
-    protected $allowedFields = array(
-        "id",
-        "user_id",
-        "depth",
-        "lft",
-        "rgt",
-        "st",
-        "email",
-        "username",
-        "password",
-        "password_tmp",
-        "token",
-        "firstname",
-        "lastname",
-        "gender",
-        "birthday",
-        "city_birth",
-        "city_live_in",
-        "website",
-        "profile_hits",
-        "default_time_zone",
-        "default_date_format",
-        "default_lang",
-        "default_layout",
-        "date_created",
-        "date_password_reset",
-        "secret_key",
-        "address_living",
-        "address_billing",
-        "address_shipping",
-        "role");
-
-    /**
-     * @param integer $id User iin id
+/**
+     * field info:
+           *    name:       id
+           *    type:       int(11) unsigned
+           *    null:       NO
+           *    default:    
+           *    extra:      auto_increment
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $id int User iin id
      * @return object
      */
-    public function setId($id) {
-        $id = (int) $id;
+	public function setId($id) {
+$id = (int) $id;
+if (isset($this->fields["id"])) {
+                            throw new \BadMethodCallException(__("The ID has been set already."));
+                        }
 
-        if (isset($this->fields["id"])) {
-            throw new \BadMethodCallException(
-            "The ID for this user has been set already.");
-        }
+                        if (!is_int($id) || $id < 1) {
+                            throw new \InvalidArgumentException(__("The ID is invalid."));
+                        }$this->fields["id"] = $id;
 
-        if (!is_int($id) || $id < 1) {
-            throw new \InvalidArgumentException(
-            "The user ID is invalid.");
-        }
-        $this->fields["id"] = $id;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param integer $userId User iin userId
+/**
+     * field info:
+           *    name:       user_id
+           *    type:       int(11)
+           *    null:       NO
+           *    default:    0
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $user_id int User iin user_id
      * @return object
      */
-    public function setUserId($userId) {
-        $userId = (int) $userId;
+	public function setUserId($user_id) {
+$user_id = (int) $user_id;
 
-        if (!isset($this->fields["id"])) {
-            throw new \BadMethodCallException(
-            "The user_id not found.");
-        }
+                if(!isset($user_id) || $user_id == ""){
+                    $user_id="0";
+                }
+            $this->fields["user_id"] = $user_id;
 
-        if (!is_int($userId) || $userId < 1) {
-            throw new \InvalidArgumentException(
-            "The user user_id is invalid.");
-        }
-        $this->fields["user_id"] = $userId;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param integer $lft User iin lft
+/**
+     * field info:
+           *    name:       depth
+           *    type:       int(11)
+           *    null:       NO
+           *    default:    0
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $depth int User iin depth
      * @return object
      */
-    public function setLft($lft) {
-        $lft = (int) $lft;
+	public function setDepth($depth) {
+$depth = (int) $depth;
 
-        if (!is_int($lft) || $lft < 0) {
-            throw new \InvalidArgumentException(
-            "The user lft is invalid.");
-        }
-        $this->fields["lft"] = $lft;
+                if(!isset($depth) || $depth == ""){
+                    $depth="0";
+                }
+            $this->fields["depth"] = $depth;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param integer $rgt User iin rgt
+/**
+     * field info:
+           *    name:       lft
+           *    type:       int(11)
+           *    null:       NO
+           *    default:    0
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $lft int User iin lft
      * @return object
      */
-    public function setRgt($rgt) {
-        $rgt = (int) $rgt;
+	public function setLft($lft) {
+$lft = (int) $lft;
 
-        if (!is_int($rgt) || $rgt < 0) {
-            throw new \InvalidArgumentException(
-            "The user lft is invalid.");
-        }
-        $this->fields["rgt"] = $rgt;
+                if(!isset($lft) || $lft == ""){
+                    $lft="0";
+                }
+            $this->fields["lft"] = $lft;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $status User iin status
+/**
+     * field info:
+           *    name:       rgt
+           *    type:       int(11)
+           *    null:       NO
+           *    default:    0
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $rgt int User iin rgt
      * @return object
      */
-    public function setSt($status = 0) {
+	public function setRgt($rgt) {
+$rgt = (int) $rgt;
 
-        if (!isset($status)) {
-            $status = 0;
-        }
-        $this->fields["st"] = (int) $status;
+                if(!isset($rgt) || $rgt == ""){
+                    $rgt="0";
+                }
+            $this->fields["rgt"] = $rgt;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $email User iin email
+/**
+     * field info:
+           *    name:       code
+           *    type:       varchar(255)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $code string User iin code
      * @return object
      */
-    public function setEmail($email) {
+	public function setCode($code) {
+$code = (string) $code;
+$this->fields["code"] = $code;
 
-        if (strlen($email) < 10 && substr_count('.', $email) > 2 && substr_count('@', $email) != 1) {
-            throw new \InvalidArgumentException(
-            "The user email is invalid.");
-        }
-        $this->fields["email"] = $email;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $username User iin username
+/**
+     * field info:
+           *    name:       st
+           *    type:       varchar(20)
+           *    null:       NO
+           *    default:    inactive
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $st string User iin st
      * @return object
      */
-    public function setUsername($username) {
+	public function setSt($st) {
+$st = (string) $st;
 
-        //username n 5-16 temdegt aguulsan useg too dooguur zuraasaas burdene
-        if (!preg_match("/^[0-9a-zA-Z_]{5,16}$/", $username)) {
-            throw new \InvalidArgumentException(
-            "The user username is invalid.");
-        }
-        $this->fields["username"] = $username;
+                if(!isset($st) || $st == ""){
+                    $st="inactive";
+                }
+            $this->fields["st"] = $st;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $password User iin password
+/**
+     * field info:
+           *    name:       role
+           *    type:       varchar(20)
+           *    null:       NO
+           *    default:    guest
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $role string User iin role
      * @return object
      */
-    public function setPassword($password) {
+	public function setRole($role) {
+$role = (string) $role;
 
-        //nuuts ugiin urt bagadaa 8 temdegtees burdene
-        if (strlen($password) < 8) {
-            throw new \InvalidArgumentException(
-            "Password must consis of at least 8 characters.");
-        }
-        $this->fields["password"] = $password;
+                if(!isset($role) || $role == ""){
+                    $role="guest";
+                }
+            $this->fields["role"] = $role;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $password token iin password
+/**
+     * field info:
+           *    name:       email
+           *    type:       varchar(50)
+           *    null:       NO
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $email string User iin email
      * @return object
      */
-    public function setToken($token) {
+	public function setEmail($email) {
+$email = (string) $email;
 
-        //token urt bagadaa 32 temdegtees burdene
-        if (strlen($token) < 32) {
-            throw new \InvalidArgumentException(
-            "Token must consis of at least 32 characters.");
-        }
-        $this->fields["token"] = $token;
+                if(!isset($email) || $email == ""){
+                    $email="";
+                }
+            $this->fields["email"] = $email;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $firstname User iin firstname
+/**
+     * field info:
+           *    name:       username
+           *    type:       varchar(50)
+           *    null:       NO
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $username string User iin username
      * @return object
      */
-    public function setFirstname($firstname) {
-        if (strlen($firstname) < 2 || strlen($firstname) > 30) {
-            throw new \InvalidArgumentException(
-            "The user firstname is invalid.");
-        }
-        $this->fields["firstname"] = htmlspecialchars(trim($firstname), ENT_QUOTES);
+	public function setUsername($username) {
+$username = (string) $username;
 
-        return $this;
+                if(!isset($username) || $username == ""){
+                    $username="";
+                }
+            $this->fields["username"] = $username;
+
+return $this;
+
     }
 
-    /**
-     * @param string $lastname User iin lastname
+/**
+     * field info:
+           *    name:       password
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $password string User iin password
      * @return object
      */
-    public function setLastname($lastname) {
-        if (strlen($lastname) < 2 || strlen($lastname) > 30) {
-            throw new \InvalidArgumentException(
-            "The user lastname is invalid.");
-        }
-        $this->fields["lastname"] = htmlspecialchars(trim($lastname), ENT_QUOTES);
+	public function setPassword($password) {
+$password = (string) $password;
+$this->fields["password"] = $password;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $gender
+/**
+     * field info:
+           *    name:       password_tmp
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $password_tmp string User iin password_tmp
      * @return object
      */
-    public function setGender($gender) {
+	public function setPasswordTmp($password_tmp) {
+$password_tmp = (string) $password_tmp;
+$this->fields["password_tmp"] = $password_tmp;
 
-        switch ($gender) {
-            case 'Male':
-                $gender = 'Male';
-                break;
-            case 'Female':
-                $gender = 'Female';
-                break;
-            default:
-                $gender = 'Unknown';
-                break;
-        }
-        $this->fields["gender"] = $gender;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $birthday YYYY-MM-DD HH:II:SS
+/**
+     * field info:
+           *    name:       firstname
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $firstname string User iin firstname
      * @return object
      */
-    public function setBirthday($birthday) {
+	public function setFirstname($firstname) {
+$firstname = (string) $firstname;
+$this->fields["firstname"] = $firstname;
 
-        $this->fields["birthday"] = convert_date($birthday);
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $city_birth User iin tursun hot
+/**
+     * field info:
+           *    name:       lastname
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $lastname string User iin lastname
      * @return object
      */
-    public function setCityBirth($city_birth = '') {
-        $this->fields["city_birth"] = htmlspecialchars(trim($city_birth), ENT_QUOTES);
+	public function setLastname($lastname) {
+$lastname = (string) $lastname;
+$this->fields["lastname"] = $lastname;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $city_live_in User iin amidardag hot
+/**
+     * field info:
+           *    name:       phone
+           *    type:       varchar(30)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $phone string User iin phone
      * @return object
      */
-    public function setCityLiveIn($city_live_in = '') {
-        $this->fields["city_live_in"] = htmlspecialchars(trim($city_live_in), ENT_QUOTES);
+	public function setPhone($phone) {
+$phone = (string) $phone;
+$this->fields["phone"] = $phone;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $website User iin tsahim huudas
+/**
+     * field info:
+           *    name:       gender
+           *    type:       varchar(20)
+           *    null:       NO
+           *    default:    unknown
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $gender string User iin gender
      * @return object
      */
-    public function setWebsite($website = '') {
-        $this->fields["website"] = htmlspecialchars(trim($website), ENT_QUOTES);
+	public function setGender($gender) {
+$gender = (string) $gender;
 
-        return $this;
+                if(!isset($gender) || $gender == ""){
+                    $gender="unknown";
+                }
+            $this->fields["gender"] = $gender;
+
+return $this;
+
     }
 
-    /**
-     * @param string $hits User iin profile iig uzsen too
+/**
+     * field info:
+           *    name:       birthday
+           *    type:       date
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $birthday date User iin birthday
      * @return object
      */
-    public function setProfileHits($hits = 0) {
-        $this->fields["profile_hits"] = (int) $hits;
+	public function setBirthday($birthday) {
+$this->fields["birthday"] = $birthday;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * @param string $hits User iin tsagiin bus
+/**
+     * field info:
+           *    name:       city_birth
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $city_birth string User iin city_birth
      * @return object
      */
-    public function setDefaultTimezone($timezone) {
+	public function setCityBirth($city_birth) {
+$city_birth = (string) $city_birth;
+$this->fields["city_birth"] = $city_birth;
 
-        if ($timezone == '' || !isset($timezone)) {
-            $timezone = TIME_ZONE;
-        }
-        $this->fields["default_timezone"] = $timezone;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $lang User iin default helnii songolt
+/**
+     * field info:
+           *    name:       city_living
+           *    type:       varchar(50)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $city_living string User iin city_living
      * @return object
      */
-    public function setDefaultLang($lang = 'mn') {
+	public function setCityLiving($city_living) {
+$city_living = (string) $city_living;
+$this->fields["city_living"] = $city_living;
 
-        if ($lang == '' || !isset($lang)) {
-            $lang = DEFAULT_LANG;
-        }
-        $this->fields["default_lang"] = $lang;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $layout User iin default zagvar
+/**
+     * field info:
+           *    name:       address_living
+           *    type:       varchar(255)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $address_living string User iin address_living
      * @return object
      */
-    public function setDefaultLayout($layout = 'default') {
+	public function setAddressLiving($address_living) {
+$address_living = (string) $address_living;
+$this->fields["address_living"] = $address_living;
 
-        if ($layout == '' || !isset($layout)) {
-            $layout = DEFAULT_LAYOUT;
-        }
-        $this->fields["default_layout"] = $layout;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * User iin uussen ognoo
+/**
+     * field info:
+           *    name:       address_billing
+           *    type:       varchar(255)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $address_billing string User iin address_billing
      * @return object
      */
-    public function setDateCreated() {
+	public function setAddressBilling($address_billing) {
+$address_billing = (string) $address_billing;
+$this->fields["address_billing"] = $address_billing;
 
-        $this->fields["date_created"] = \M\Carbon::now();
+return $this;
 
-        return $this;
     }
 
-    /**
-     * User iin nuuts ug sergeeh huselt yavuulsan ognoo
-     * @param $date string optional
+/**
+     * field info:
+           *    name:       address_shipping
+           *    type:       varchar(255)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $address_shipping string User iin address_shipping
      * @return object
      */
-    public function setDatePasswordReset($date) {
+	public function setAddressShipping($address_shipping) {
+$address_shipping = (string) $address_shipping;
+$this->fields["address_shipping"] = $address_shipping;
 
-        if (isset($date)) {
-            $this->fields["date_password_reset"] = convert_date($date);
-        } else {
-            $this->fields["date_password_reset"] = '';
-        }
+return $this;
 
-        return $this;
     }
 
-    /**
-     * User iin secret key
-     * @param $secret_key string API aar handahad token toi hosloj hereglegdene
+/**
+     * field info:
+           *    name:       website
+           *    type:       varchar(255)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $website string User iin website
      * @return object
      */
-    public function setSecretKey($secret_key = '') {
+	public function setWebsite($website) {
+$website = (string) $website;
+$this->fields["website"] = $website;
 
-        if ($secret_key != '' && strlen($secret_key) > 16) {
-            $this->fields["secret_key"] = $secret_key;
-        }
+return $this;
 
-        return $this;
     }
 
-    /**
-     * User iin address living
-     * @param $address_living string user iin odoogiin amidarch bui hayag
+/**
+     * field info:
+           *    name:       profile_hits
+           *    type:       int(11)
+           *    null:       NO
+           *    default:    0
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $profile_hits int User iin profile_hits
      * @return object
      */
-    public function setAddressLiveing($address_living = '') {
+	public function setProfileHits($profile_hits) {
+$profile_hits = (int) $profile_hits;
 
-        $this->fields["address_living"] = $address_living;
+                if(!isset($profile_hits) || $profile_hits == ""){
+                    $profile_hits="0";
+                }
+            $this->fields["profile_hits"] = $profile_hits;
 
-        return $this;
+return $this;
+
     }
 
-    /**
-     * User iin address billing
-     * @param $address_billing string user iin tulburiin hayag
+/**
+     * field info:
+           *    name:       token
+           *    type:       varchar(128)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $token string User iin token
      * @return object
      */
-    public function setAddressBilling($address_billing = '') {
+	public function setToken($token) {
+$token = (string) $token;
+$this->fields["token"] = $token;
 
-        $this->fields["address_billing"] = $address_billing;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * User iin address shipping
-     * @param $address_shipping string user iin hurgeltiin hayag
+/**
+     * field info:
+           *    name:       secret_key
+           *    type:       varchar(128)
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $secret_key string User iin secret_key
      * @return object
      */
-    public function setAddressBilling($address_shipping = '') {
+	public function setSecretKey($secret_key) {
+$secret_key = (string) $secret_key;
+$this->fields["secret_key"] = $secret_key;
 
-        $this->fields["address_shipping"] = $address_shipping;
+return $this;
 
-        return $this;
     }
 
-    /**
-     * @param string $role User iin role
+/**
+     * field info:
+           *    name:       default_timezone
+           *    type:       varchar(50)
+           *    null:       NO
+           *    default:    Asia/Ulaanbaatar
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $default_timezone string User iin default_timezone
      * @return object
      */
-    public function setRole($role) {
+	public function setDefaultTimezone($default_timezone) {
+$default_timezone = (string) $default_timezone;
 
-        if (!$role) {
-            $role = self::GUEST_ROLE;
-        }
+                if(!isset($default_timezone) || $default_timezone == ""){
+                    $default_timezone="Asia/Ulaanbaatar";
+                }
+            $this->fields["default_timezone"] = $default_timezone;
 
-//        if ($role != self::ADMINISTRATOR_ROLE ||
-//            $role != self::GUEST_ROLE) {
-//            throw new \InvalidArgumentException(
-//                "The user role is invalid.");
-//        }
-        $this->fields["role"] = $role;
-        return $this;
+return $this;
+
     }
 
-    //
-    public function getAllFields() {
+/**
+     * field info:
+           *    name:       default_lang
+           *    type:       varchar(2)
+           *    null:       NO
+           *    default:    mn
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $default_lang string User iin default_lang
+     * @return object
+     */
+	public function setDefaultLang($default_lang) {
+$default_lang = (string) $default_lang;
 
-        return $this->allowedFields;
+                if(!isset($default_lang) || $default_lang == ""){
+                    $default_lang="mn";
+                }
+            $this->fields["default_lang"] = $default_lang;
+
+return $this;
+
     }
+
+/**
+     * field info:
+           *    name:       default_layout
+           *    type:       varchar(30)
+           *    null:       NO
+           *    default:    default
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $default_layout string User iin default_layout
+     * @return object
+     */
+	public function setDefaultLayout($default_layout) {
+$default_layout = (string) $default_layout;
+
+                if(!isset($default_layout) || $default_layout == ""){
+                    $default_layout="default";
+                }
+            $this->fields["default_layout"] = $default_layout;
+
+return $this;
+
+    }
+
+/**
+     * field info:
+           *    name:       date_created
+           *    type:       datetime
+           *    null:       NO
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $date_created datetime User iin date_created
+     * @return object
+     */
+	public function setDateCreated($date_created) {
+if(!isset($date_created)){$date_created = \M\Carbon::now();}
+
+                if(!isset($date_created) || $date_created == ""){
+                    $date_created="";
+                }
+            $this->fields["date_created"] = $date_created;
+
+return $this;
+
+    }
+
+/**
+     * field info:
+           *    name:       date_password_reset
+           *    type:       datetime
+           *    null:       YES
+           *    default:    
+           *    extra:      
+           *    generated:  2013-12-28 12:08:48 am
+     * @param $date_password_reset datetime User iin date_password_reset
+     * @return object
+     */
+	public function setDatePasswordReset($date_password_reset) {
+$this->fields["date_password_reset"] = $date_password_reset;
+
+return $this;
+
+    }
+
+
 
 }
