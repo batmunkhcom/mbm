@@ -18,7 +18,7 @@ namespace F;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id
  */
-class Category {
+class Category extends \PFBC\Base {
 
     public function Category() {
 
