@@ -19,6 +19,7 @@
     "autoload": {
         "psr-0": {
             "D": "src/",
+            "F": "src/",
             "M": "src/",
             "Test": "src/",
             "PFBC": "src/"
