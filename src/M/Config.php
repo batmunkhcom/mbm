@@ -32,6 +32,7 @@ namespace M;
  * @property array $data[css_loadfile] ashiglagdah nemelt css file uud. compress hiigdehgui shuud achaalagdana
  * @property array $data[js_files] ashiglagdah nemelt js file uud. compress hiigdene.
  * @property array $data[js_loadfile] ashiglagdah nemelt js file uud. compress hiigdehgui shuud achaalagdana.
+ * @property array $data[routes] ali module/action haash zaagdsan route iin tohirgoo
  */
 class Config extends Core {
 
@@ -48,7 +49,7 @@ class Config extends Core {
 
     static function get($key = '', $value = null) {
 
-        if (!is_null($value) || $value != '') {
+        if (!is_null($value) && $value != '') {
             self::set($key, $value);
         }
 
