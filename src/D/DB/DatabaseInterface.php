@@ -23,4 +23,6 @@ interface DatabaseInterface {
     public function update($table, array $bind, $where = "");
 
     public function delete($table, $where = "");
+
+    public function fetchAllTables();
 }
