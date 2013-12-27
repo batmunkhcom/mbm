@@ -2,7 +2,7 @@
     "name": "batmunkh/v3",
     "type": "library",
     "description": "miniCMS v3 library",
-    "keywords": ["miniCMS","miniCMSv3","Batmunkh","Moltov","CMS","Content Management System"],
+    "keywords": ["miniCMS", "miniCMSv3", "Batmunkh", "Moltov", "CMS", "Content Management System"],
     "homepage": "http://www.mng.cc",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,7 @@
             "D": "src/",
             "M": "src/",
             "Test": "src/",
-            "MyApp": "src/"
+            "PFBC": "src/"
         }
     }
 }
