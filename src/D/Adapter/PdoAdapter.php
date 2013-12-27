@@ -157,9 +157,18 @@ class PdoAdapter implements \D\DB\DatabaseInterface {
 
     public function fetchAllTables() {
         $sql = "SHOW TABLES FROM " . $this->database;
-        return $this->prepare($sql)
-                        ->execute()
-                        ->countAffectedRows();
+        $this->prepare($sql)
+                ->execute();
+
+        return $this;
+    }
+
+    public function fetchAllFields($table) {
+        $sql = "SHOW FIELDS FROM " . $table;
+        $this->prepare($sql)
+                ->execute();
+
+        return $this;
     }
 
 }

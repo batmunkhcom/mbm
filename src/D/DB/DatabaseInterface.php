@@ -25,4 +25,6 @@ interface DatabaseInterface {
     public function delete($table, $where = "");
 
     public function fetchAllTables();
+
+    public function fetchAllFields();
 }
