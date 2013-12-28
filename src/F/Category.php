@@ -18,10 +18,11 @@ namespace F;
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id
  */
-class Category extends \PFBC\Base {
+class Category extends Form {
 
-    public function Category() {
-
+    public function __construc() {
+        $form = new Form("Category");
+        $form->addElement();
     }
 
 }
