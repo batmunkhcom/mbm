@@ -33,6 +33,8 @@ namespace M;
  * @property array $data[js_files] ashiglagdah nemelt js file uud. compress hiigdene.
  * @property array $data[js_loadfile] ashiglagdah nemelt js file uud. compress hiigdehgui shuud achaalagdana.
  * @property array $data[routes] ali module/action haash zaagdsan route iin tohirgoo
+ * @property array $data[GET] $_GET huvisagchuud
+ * @property array $data[POST] $_POST huvisagchuud
  */
 class Config extends Core {
 
