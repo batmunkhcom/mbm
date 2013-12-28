@@ -22,30 +22,6 @@ class CategoryForm {
 
     public function __construct() {
 
-        $form = \F\Nibble\NibbleForm::getInstance('Category');
-        $form->addField('choice', 'select', array(
-            'choices' => array(
-                0 => __('Set as main category'),
-                1 => 'uur songolt n'
-            ),
-            'false_values' => array(0)
-        ));
-        $form->addField('choice', 'radio', array(
-            'choices' => array(
-                'inactive' => __('Inactive'),
-                'active' => __('Active'),
-                'pending' => __('Pending')
-            ),
-            'label' => __('Status')
-        ));
-        $form->addField('title', 'text', array(
-            'class' => 'input',
-            'required' => true
-        ));
-
-        $this->form = $form;
-
-        return $this;
     }
 
 }
