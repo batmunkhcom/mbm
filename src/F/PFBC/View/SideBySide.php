@@ -40,7 +40,7 @@ class SideBySide extends \F\PFBC\View {
         echo '</fieldset></form>';
     }
 
-    protected function renderLabel(\PFBC\Element $element) {
+    protected function renderLabel(\F\PFBC\Element $element) {
         $label = $element->getLabel();
         if (!empty($label)) {
             echo '<label class="control-label" for="', $element->getAttribute("id"), '">';

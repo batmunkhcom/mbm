@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+namespace F;
+
 /**
  * Description here
  *
@@ -22,6 +24,21 @@ class CategoryForm {
 
     public function __construct() {
 
+        $form = new PFBC\Form("validation");
+        $form->configure(
+                array(
+                    'action' => '/?adfas'
+                )
+        );
+        $form->addElement(new \F\PFBC\Element\HTML('<legend>' . __('Add new category') . '</legend>'));
+        $form->addElement(new \F\PFBC\Element\Textbox(__('Title') . ":", "title", array(
+            "required" => 1,
+            "longDesc" => __('Title is required')
+        )));
+
+        $this->form = $form;
+
+        return $form;
     }
 
 }

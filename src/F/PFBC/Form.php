@@ -291,33 +291,34 @@ class Form extends Base {
     protected function renderCSS() {
         $this->renderCSSFiles();
 
-        echo '<style type="text/css">';
-        $this->view->renderCSS();
-        $this->errorView->renderCSS();
-        foreach ($this->_elements as $element)
-            $element->renderCSS();
-        echo '</style>';
+//        echo '<style type="text/css">';
+//        $this->view->renderCSS();
+//        $this->errorView->renderCSS();
+//        foreach ($this->_elements as $element) {
+//            $element->renderCSS();
+//        }
+//        echo '</style>';
     }
 
     protected function renderCSSFiles() {
-        $urls = array();
-        if (!in_array("bootstrap", $this->prevent)) {
-            $urls[] = $this->_prefix . "://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css";
-        }
-        foreach ($this->_elements as $element) {
-            $elementUrls = $element->getCSSFiles();
-            if (is_array($elementUrls)) {
-                $urls = array_merge($urls, $elementUrls);
-            }
-        }
-
-        /* This section prevents duplicate css files from being loaded. */
-        if (!empty($urls)) {
-            $urls = array_values(array_unique($urls));
-            foreach ($urls as $url) {
-                echo '<link type="text/css" rel="stylesheet" href="', $url, '"/>';
-            }
-        }
+//        $urls = array();
+//        if (!in_array("bootstrap", $this->prevent)) {
+//            $urls[] = $this->_prefix . "://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css";
+//        }
+//        foreach ($this->_elements as $element) {
+//            $elementUrls = $element->getCSSFiles();
+//            if (is_array($elementUrls)) {
+//                $urls = array_merge($urls, $elementUrls);
+//            }
+//        }
+//
+//        /* This section prevents duplicate css files from being loaded. */
+//        if (!empty($urls)) {
+//            $urls = array_values(array_unique($urls));
+//            foreach ($urls as $url) {
+//                echo '<link type="text/css" rel="stylesheet" href="', $url, '"/>';
+//            }
+//        }
     }
 
     protected function renderJS() {
@@ -397,28 +398,28 @@ JS;
     }
 
     protected function renderJSFiles() {
-        $urls = array();
-        if (!in_array("jQuery", $this->prevent)) {
-            $urls[] = $this->_prefix . "://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
-        }
-        if (!in_array("bootstrap", $this->prevent)) {
-            $urls[] = $this->_prefix . "://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js";
-        }
-
-        foreach ($this->_elements as $element) {
-            $elementUrls = $element->getJSFiles();
-            if (is_array($elementUrls)) {
-                $urls = array_merge($urls, $elementUrls);
-            }
-        }
-
-        /* This section prevents duplicate js files from being loaded. */
-        if (!empty($urls)) {
-            $urls = array_values(array_unique($urls));
-            foreach ($urls as $url) {
-                echo '<script type="text/javascript" src="', $url, '"></script>';
-            }
-        }
+//        $urls = array();
+//        if (!in_array("jQuery", $this->prevent)) {
+//            $urls[] = $this->_prefix . "://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
+//        }
+//        if (!in_array("bootstrap", $this->prevent)) {
+//            $urls[] = $this->_prefix . "://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js";
+//        }
+//
+//        foreach ($this->_elements as $element) {
+//            $elementUrls = $element->getJSFiles();
+//            if (is_array($elementUrls)) {
+//                $urls = array_merge($urls, $elementUrls);
+//            }
+//        }
+//
+//        /* This section prevents duplicate js files from being loaded. */
+//        if (!empty($urls)) {
+//            $urls = array_values(array_unique($urls));
+//            foreach ($urls as $url) {
+//                echo '<script type="text/javascript" src="', $url, '"></script>';
+//            }
+//        }
     }
 
     /* The save method serialized the form's instance and saves it in the session. */
