@@ -58,12 +58,7 @@ class Form extends Base {
           is uploaded within the server's document root.  If symbolic links are used to reference the PFBC
           directory, you may need to set this property in the form's configure method or directly in this
           constructor. */
-        $path = __DIR__ . "/Resources";
-        if (strpos($path, $_SERVER["DOCUMENT_ROOT"]) !== false) {
-            $this->resourcesPath = substr($path, strlen($_SERVER["DOCUMENT_ROOT"]));
-        } else {
-            $this->resourcesPath = "/PFBC/Resources";
-        }
+        $this->resourcesPath = DIR_WWW . 'assets' . DS;
     }
 
     /* When a form is serialized and stored in the session, this function prevents any non-essential
