@@ -2,8 +2,8 @@
 
 /**
  * This file is part of the miniCMS package.
- * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
- * 
+ * (c) since 2005 BATMUNKH Moltov <contact@batmunkh.com>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -16,27 +16,32 @@ namespace M;
  * @package    miniCMS
  * @subpackage -
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
- * @version    SVN: $Id 
+ * @version    SVN: $Id
  */
 class Core {
 
-    
     public function __construct($config) {
 
         //buh app uudiin jagsaalt
         App::getAllApps();
 //        $config = new Config($config);
-        foreach($config as $k=>$v){
-            define(strtoupper($k),$v);
+        foreach ($config as $k => $v) {
+            define(strtoupper($k), $v);
         }
-        
-        Config::set('layout',DEFAULT_LAYOUT);
-        
+
+        //$_POST parameter uudiig onooj uguh
+        Config::set('POST', $_POST);
+
+        //$_GET parameter uudiig onooj uguh
+        Config::set('GET', $_GET);
+
+        Config::set('layout', DEFAULT_LAYOUT);
+
         return $config;
     }
-    
-    static function getSession(){
-        
+
+    static function getSession() {
+
     }
 
 }

@@ -2,7 +2,7 @@
 
 /**
  * This file is part of the miniCMS package.
- * (c) 2005-2012 BATMUNKH Moltov <contact@batmunkh.com>
+ * (c) since 2005 BATMUNKH Moltov <contact@batmunkh.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,7 +20,8 @@ class Setting extends AbstractEntity {
     protected $allowedFields = array(
         'id',
         'setting_name',
-        'setting_value');
+        'setting_value',
+        'setting_type');
 
     /**
      * field info:
@@ -86,6 +87,28 @@ class Setting extends AbstractEntity {
             $setting_value = "";
         }
         $this->fields["setting_value"] = $setting_value;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       setting_type
+     *    type:       text
+     *    null:       NO
+     *    default:    default
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $setting_type string Setting iin setting_value
+     * @return object
+     */
+    public function setSettingValue($setting_type) {
+        $setting_type = (string) $setting_type;
+
+        if (!isset($setting_type) || $setting_type == "") {
+            $setting_type = "default";
+        }
+        $this->fields["setting_value"] = $setting_type;
 
         return $this;
     }

@@ -45,12 +45,13 @@ class File {
         return $ext;
     }
 
-    /*
-     * @param $include_files : yamar turliin file iig include hiih tuhai.
+    /**
+     * array aar orj irsen file uudiin utgiig include hiine
+     *
+     * @param $include_files array yamar turliin file iig include hiih tuhai.
      *
      * Example : jishee n $include_files['php'] = array('/home/username/file.php')
      */
-
     public static function includePHPFiles($include_files = array()) {
         if (is_array($include_files)) {
             foreach ($include_files as $k => $v) {
@@ -91,10 +92,9 @@ class File {
         }
     }
 
-    /*
+    /**
      * Folder hooson esehiig shalgana
      *      */
-
     public static function isEmptyDir($dir) {
         if (($files = @scandir($dir)) && count($files) <= 2) {
             return true;
