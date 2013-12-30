@@ -14,7 +14,7 @@ namespace F\Form;
  * Description here
  *
  * @package    miniCMS
- * @subpackage F\Form
+ * @subpackage -
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id
  */
