@@ -27,7 +27,7 @@ class SettingForm extends \F\PFBC\Form {
 
         $this->form = $form;
 
-        return $this;
+        return $form;
     }
 
 }
