@@ -8,6 +8,8 @@
  * file that was distributed with this source code.
  */
 
+namespace F\Form;
+
 /**
  * Description here
  *
@@ -16,12 +18,16 @@
  * @author     BATMUNKH Moltov <contact@batmunkh.com>
  * @version    SVN: $Id
  */
-class SettingForm {
+class SettingForm extends \F\PFBC\Form {
 
     public $form;
 
-    public function SettingForm() {
-        $form = new F\PFBC\Form('setting');
+    public function SettingForm($form_name = 'setting') {
+        $form = new F\PFBC\Form($form_name);
+
+        $this->form = $form;
+
+        return $this;
     }
 
 }

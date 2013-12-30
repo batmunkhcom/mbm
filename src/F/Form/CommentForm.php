@@ -32,7 +32,7 @@ class CommentForm extends \F\PFBC\Form {
         );
         $form->addElement(new \F\PFBC\Element\HTML('<legend>' . __('Comment form') . '</legend>'));
         $form->addElement(new \F\PFBC\Element\Hidden("code", $code));
-        $form->addElement(new \F\PFBC\Element\Hidden("comment_form_name", $form_name));
+        $form->addElement(new \F\PFBC\Element\Hidden("form_name", $form_name));
         $form->addElement(new \F\PFBC\Element\Textbox(__('Name') . ":", "name", array(
             "required" => 1,
             "longDesc" => __('Name field is required')

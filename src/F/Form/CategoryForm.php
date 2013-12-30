@@ -24,13 +24,14 @@ class CategoryForm extends \F\PFBC\Form {
 
     public function __construct($form_name = 'category') {
 
-        $form = new \F\PFBC\Form("category");
+        $form = new \F\PFBC\Form($form_name);
         $form->configure(
                 array(
                     'action' => get_url('admin_category_save')
                 )
         );
         $form->addElement(new \F\PFBC\Element\HTML('<legend>' . __('Add new category') . '</legend>'));
+        $form->addElement(new \F\PFBC\Element\Hidden('form_name', $form_name));
         $form->addElement(new \F\PFBC\Element\Textbox(__('Title') . ":", "title", array(
             "required" => 1,
             "longDesc" => __('Title field is required')
@@ -53,7 +54,7 @@ class CategoryForm extends \F\PFBC\Form {
 
         $this->form = $form;
 
-        return $this;
+        return $form;
     }
 
 }
