@@ -16,9 +16,17 @@ interface DatabaseInterface {
 
     public function fetchAll($fetchStyle = null, $column = 0);
 
-    public function select($table, array $bind, $boolOperator = "AND");
+    public function select($table, array $bind, $order_by = '', $group_by = '', $boolOperator = "AND");
 
     public function insert($table, array $bind);
+
+    /**
+     * SQL query. PS: turshih heregtei!!!
+     *
+     * @param string $sql Query. Ex : SELECT * FROM table WHERE id=:tmp_id
+     * @param array $bind bind values. Ex: array('tmp_id'=>1)
+     */
+    public function query($sql, array $bind = array());
 
     public function update($table, array $bind, $where = "");
 

@@ -7,7 +7,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace \D\Model;
+
+namespace D\Model;
 
 /**
  * Content model. contents table.
@@ -24,6 +25,7 @@ class Content extends AbstractEntity {
         'code',
         'st',
         'content_type',
+        'photo',
         'title',
         'content_brief',
         'content_body',
@@ -162,6 +164,24 @@ class Content extends AbstractEntity {
             $content_type = "article";
         }
         $this->fields["content_type"] = $content_type;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       photo
+     *    type:       varchar(255)
+     *    null:       YES
+     *    default:
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $photo string Content iin photo
+     * @return object
+     */
+    public function setPhoto($photo) {
+        $photo = (string) $photo;
+        $this->fields["photo"] = $photo;
 
         return $this;
     }

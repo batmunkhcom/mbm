@@ -38,7 +38,7 @@ class UnitOfWork implements UnitOfWorkInterface {
         return $this;
     }
 
-    public function registerClean(\D\Model\EntityInterface $entity) {
+    public function registerClean(/* \D\Model\EntityInterface */ $entity) {
         $this->registerEntity($entity, self::STATE_CLEAN);
         return $this;
     }
@@ -72,12 +72,31 @@ class UnitOfWork implements UnitOfWorkInterface {
     }
 
     public function rollback() {
-        // your custom rollback implementation goes here
+        // custom rollback implementation goes here
     }
 
     public function clear() {
         $this->storage->clear();
         return $this;
+    }
+
+    public function fetchAll($conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
+        $entity = $this->dataMapper->fetchAll($conditions, $order_by, $group_by, $boolOperator);
+        if ($entity) {
+            $this->registerClean($entity);
+            return $entity;
+        }
+    }
+
+    /**
+     * eniig shalgah heregtei!!!!!
+     */
+    public function fetchToArray($conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
+        $entity = $this->dataMapper->fetchToArray($conditions, $order_by, $group_by, $boolOperator);
+        if ($entity) {
+            $this->registerClean($entity);
+            return $entity;
+        }
     }
 
 }

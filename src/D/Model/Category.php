@@ -28,12 +28,14 @@ class Category extends AbstractEntity {
         'st',
         'user_id',
         'pos',
-        'title',
+        'name',
         'is_external',
         'external_url',
+        'target',
         'lang',
         'hits',
         'date_created',
+        'date_publish',
         'date_last_updated',
         'last_updated_user_id',
         'is_adult');
@@ -235,18 +237,18 @@ class Category extends AbstractEntity {
 
     /**
      * field info:
-     *    name:       title
+     *    name:       name
      *    type:       varchar(255)
      *    null:       YES
      *    default:
      *    extra:
      *    generated:  2013-12-28 07:34:15 am
-     * @param $title string Category iin title
+     * @param $name string Category iin name
      * @return object
      */
-    public function setTitle($title) {
-        $title = (string) $title;
-        $this->fields["title"] = $title;
+    public function setName($name) {
+        $name = (string) $name;
+        $this->fields["name"] = $name;
 
         return $this;
     }
@@ -268,6 +270,24 @@ class Category extends AbstractEntity {
             $is_external = "0";
         }
         $this->fields["is_external"] = $is_external;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       target
+     *    type:       varchar(255)
+     *    null:       YES
+     *    default:
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $target string Category iin link target
+     * @return object
+     */
+    public function setTarget($target) {
+        $target = (string) $target;
+        $this->fields["target"] = $target;
 
         return $this;
     }
@@ -354,6 +374,30 @@ class Category extends AbstractEntity {
             $date_created = "";
         }
         $this->fields["date_created"] = $date_created;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       date_publish
+     *    type:       datetime
+     *    null:       NO
+     *    default:
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $date_publish datetime Category iin date_publish. hezee postloh field
+     * @return object
+     */
+    public function setDatePublish($date_publish) {
+        if (!isset($date_publish)) {
+            $date_publish = \M\Carbon::now();
+        }
+
+        if (!isset($date_publish) || $date_publish == "") {
+            $date_publish = "";
+        }
+        $this->fields["date_publish"] = $date_publish;
 
         return $this;
     }

@@ -33,8 +33,8 @@ abstract class AbstractDataMapper implements DataMapperInterface {
         return $this->loadEntity($row);
     }
 
-    public function fetchAll(array $conditions = array()) {
-        $this->adapter->select($this->entityTable, $conditions);
+    public function fetchAll(array $conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
+        $this->adapter->select($this->entityTable, $conditions, $order_by, $group_by, $boolOperator);
         $rows = $this->adapter->fetchAll();
         return $this->loadEntityCollection($rows);
     }
@@ -53,6 +53,22 @@ abstract class AbstractDataMapper implements DataMapperInterface {
 
     public function delete(\D\Model\EntityInterface $entity) {
         return $this->adapter->delete($this->entityTable, "id = $entity->id");
+    }
+
+    /**
+     * eniig shalgah heregtei!!!!!
+     */
+    public function fetchToArray(array $conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
+        $this->adapter->select($this->entityTable, $conditions, $order_by, $group_by, $boolOperator);
+        $rows = $this->adapter->fetchAll();
+
+        $to_array = array();
+
+        foreach ($rows as $r) {
+            $to_array[$r->id] = $r->name;
+        }
+
+        return $this->loadEntityCollection($to_array);
     }
 
     protected function loadEntityCollection(array $rows) {
