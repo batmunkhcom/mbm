@@ -26,15 +26,21 @@ abstract class AbstractDataMapper implements DataMapperInterface {
     }
 
     public function fetchById($id) {
-        $this->adapter->select($this->entityTable, array("id" => $id));
+        $this->adapter->select($this->entityTable, array("id" => $id), "id=:id");
         if (!$row = $this->adapter->fetch()) {
             return null;
         }
         return $this->loadEntity($row);
     }
 
-    public function fetchAll(array $conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
-        $this->adapter->select($this->entityTable, $conditions, $order_by, $group_by, $boolOperator);
+    public function fetchAll($bind = array(), $where = "", $options = array()) {
+        $this->adapter->select($this->entityTable, $bind, $where, $options);
+        $rows = $this->adapter->fetchAll();
+        return $this->loadEntityCollection($rows);
+    }
+
+    public function select($bind = array(), $where = "", $options = array()) {
+        $this->adapter->select($this->entityTable, $bind, $where);
         $rows = $this->adapter->fetchAll();
         return $this->loadEntityCollection($rows);
     }
@@ -55,22 +61,6 @@ abstract class AbstractDataMapper implements DataMapperInterface {
         return $this->adapter->delete($this->entityTable, "id = $entity->id");
     }
 
-    /**
-     * eniig shalgah heregtei!!!!!
-     */
-    public function fetchToArray(array $conditions = array(), $order_by = '', $group_by = '', $boolOperator = 'AND') {
-        $this->adapter->select($this->entityTable, $conditions, $order_by, $group_by, $boolOperator);
-        $rows = $this->adapter->fetchAll();
-
-        $to_array = array();
-
-        foreach ($rows as $r) {
-            $to_array[$r->id] = $r->name;
-        }
-
-        return $this->loadEntityCollection($to_array);
-    }
-
     protected function loadEntityCollection(array $rows) {
         $this->collection->clear();
         foreach ($rows as $row) {
@@ -80,4 +70,10 @@ abstract class AbstractDataMapper implements DataMapperInterface {
     }
 
     abstract protected function loadEntity(array $row);
+
+    public function getTableName() {
+
+        return $this->entityTable;
+    }
+
 }

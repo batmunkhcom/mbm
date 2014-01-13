@@ -20,7 +20,7 @@ class Comment extends AbstractEntity {
      */
     protected $allowedFields = array(
         'id',
-        'comment_id',
+        'parent_id',
         'user_id',
         'code',
         'name',
@@ -55,22 +55,88 @@ class Comment extends AbstractEntity {
 
     /**
      * field info:
-     *    name:       comment_id
-     *    type:       int(11)
+     *    name:       parent_id
+     *    type:       int(11) unsigned
      *    null:       NO
      *    default:    0
      *    extra:
      *    generated:  2013-12-28 07:34:15 am
-     * @param $comment_id int Comment iin comment_id
+     * @param $parent_id int Content iin parent_id
      * @return object
      */
-    public function setCommentId($comment_id) {
-        $comment_id = (int) $comment_id;
+    public function setParentId($parent_id) {
+        $parent_id = (int) $parent_id;
 
-        if (!isset($comment_id) || $comment_id == "") {
-            $comment_id = "0";
+        if (!isset($parent_id) || $parent_id == "") {
+            $parent_id = "0";
         }
-        $this->fields["comment_id"] = $comment_id;
+        $this->fields["parent_id"] = $parent_id;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       lft
+     *    type:       int(11) unsigned
+     *    null:       NO
+     *    default:    0
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $lft int Content iin lft
+     * @return object
+     */
+    public function setLft($lft) {
+        $lft = (int) $lft;
+
+        if (!isset($lft) || $lft == "") {
+            $lft = "0";
+        }
+        $this->fields["lft"] = $lft;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       rgt
+     *    type:       int(11) unsigned
+     *    null:       NO
+     *    default:    0
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $rgt int Content iin rgt
+     * @return object
+     */
+    public function setRgt($rgt) {
+        $rgt = (int) $rgt;
+
+        if (!isset($rgt) || $rgt == "") {
+            $rgt = "0";
+        }
+        $this->fields["rgt"] = $rgt;
+
+        return $this;
+    }
+
+    /**
+     * field info:
+     *    name:       depth
+     *    type:       int(11) unsigned
+     *    null:       NO
+     *    default:    0
+     *    extra:
+     *    generated:  2013-12-28 07:34:15 am
+     * @param $depth int Content iin depth
+     * @return object
+     */
+    public function setDepth($depth) {
+        $depth = (int) $depth;
+
+        if (!isset($depth) || $depth == "") {
+            $depth = "0";
+        }
+        $this->fields["depth"] = $depth;
 
         return $this;
     }

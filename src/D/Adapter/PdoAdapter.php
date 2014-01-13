@@ -49,6 +49,7 @@ class PdoAdapter implements \D\DB\DatabaseInterface {
 
         try {
             $this->statement = $this->connection->prepare($sql, $options);
+
             return $this;
         } catch (\PDOException $e) {
             throw new \RunTimeException($e->getMessage());
@@ -66,6 +67,17 @@ class PdoAdapter implements \D\DB\DatabaseInterface {
     }
 
     public function countAffectedRows() {
+        try {
+            return $this->getStatement()->rowCount();
+        } catch (\PDOException $e) {
+            throw new \RunTimeException($e->getMessage());
+        }
+    }
+
+    /**
+     * countAffectedRows iin Alias
+     */
+    public function count() {
         try {
             return $this->getStatement()->rowCount();
         } catch (\PDOException $e) {
@@ -102,28 +114,27 @@ class PdoAdapter implements \D\DB\DatabaseInterface {
         }
     }
 
-    public function select($table, array $bind = array(), $order_by = '', $group_by = '', $boolOperator = "AND") {
-        if ($bind) {
-            $where = array();
+    public function select($table, $bind = array(), $where = "", $options = array()) {
+        if (count($bind) > 0) {
             foreach ($bind as $col => $value) {
                 unset($bind[$col]);
                 $bind[":" . $col] = $value;
-                $where[] = $col . " = :" . $col;
             }
         }
-
-        $sql = "SELECT * FROM " . $table
-                . (($bind) ? " WHERE "
-                        . implode(" " . $boolOperator . " ", $where) : " ");
-        if (strlen($group_by) > 0) {
-            $sql .= " GROUP BY " . $group_by;
+        if (isset($options['fields'])) {
+            $fields = $options['fields'];
+        } else {
+            $fields = '*';
         }
-        if (strlen($order_by) > 0) {
-            $sql .= " ORDER BY " . $order_by;
+        $sql = "SELECT " . $fields . " FROM " . $table . " ";
+
+        if (strlen($where) > 2) {
+            $sql .= "WHERE " . $where;
         }
 //        set_flash($sql);
         $this->prepare($sql)
                 ->execute($bind);
+
         return $this;
     }
 

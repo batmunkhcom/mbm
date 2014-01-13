@@ -50,9 +50,9 @@ class CategoryForm extends \F\Form {
             'minlength' => 2,
             'maxlength' => 25
         ));
-        $form->addElement(__('Parent category'), 'category_id', 'select', array(
+        $form->addElement(__('Parent category'), 'parent_id', 'select', array(
             'class' => 'form-control',
-            'value' => \Category::formOptions()
+            'value' => array(0 => __('Set as main')) + \Category::formOptions()
         ));
         $form->addElement(__('Is 18+'), 'is_adult', 'checkbox', array(
             'class' => 'checkbox form-control',
