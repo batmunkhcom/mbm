@@ -42,18 +42,16 @@ class CategoryForm extends \F\Form {
                 ), array(
             'minlength' => 2
         ));
-        $form->addElement(__('Code'), 'code', 'input', array(
-            'class' => 'form-control',
-            'value' => post('code')
-                ), array(
-            'is_required' => 1,
-            'minlength' => 2,
-            'maxlength' => 25
-        ));
         $form->addElement(__('Parent category'), 'parent_id', 'select', array(
             'class' => 'form-control',
             'value' => array(0 => __('Set as main')) + \Category::formOptions()
         ));
+
+        $form->addElement(__('Select status'), 'st', 'select', array(
+            'class' => 'form-control',
+            'value' => st_array()
+                ), array());
+
         $form->addElement(__('Is 18+'), 'is_adult', 'checkbox', array(
             'class' => 'checkbox form-control',
             'value' => 1
@@ -62,11 +60,22 @@ class CategoryForm extends \F\Form {
         $form->addElement(__('Is external'), 'is_external', 'checkbox', array(
             'class' => 'checkbox form-control',
             'value' => 1,
-            'onclick' => "$('#element_external_url').toggle();"
+            'onclick' => "$('#element_external_url').toggle();$('#element_target').toggle();"
         ));
         $form->addElement(__('External URL'), 'external_url', 'input', array(
             'class' => 'form-control',
             'value' => post('external_url')
+        ));
+       $form->addElement(__('Link target'), 'target', 'input', array(
+            'class' => 'form-control',
+            'value' => post('target')
+        ));
+        $form->addElement(__('Module'), 'module', 'input', array(
+            'class' => 'form-control',
+            'value' => post('module'),
+            'minlength' => 2
+                ), array(
+            'minlength' => 2
         ));
         $form->addElement('', 'add_category', 'button', array(
             'class' => 'btn btn-success',
